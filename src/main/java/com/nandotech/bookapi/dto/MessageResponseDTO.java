@@ -1,2 +1,11 @@
-package com.nandotech.bookapi.dto;public class MessageResponseDTO {
+package com.nandotech.bookapi.dto;
+
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
+public class MessageResponseDTO {
+
+    private String message;
 }
