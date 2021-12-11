@@ -61,10 +61,20 @@ public class BookService {
 
     // Quando temos uma Exception ou faremos um try/catch ou lança um thorws na assinatura do método conforma baixo
     public BookDTO findById(Long id) throws BookNotFoundException {
-        Book bookById = bookRepository
-                .findById(id)
-                .orElseThrow(() -> new BookNotFoundException(id));
+        Book bookById = verifyIfExists(id);
 
         return bookMapper.toDTO(bookById);
+    }
+
+    public void delete(Long id) throws BookNotFoundException {
+        verifyIfExists(id);
+
+        bookRepository.deleteById(id);
+    }
+
+    private Book verifyIfExists(Long id) throws BookNotFoundException{
+        return bookRepository
+                .findById(id)
+                .orElseThrow(() -> new BookNotFoundException(id));
     }
 }

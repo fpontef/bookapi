@@ -38,4 +38,10 @@ public class BookController {
     public BookDTO findById(@PathVariable Long id) throws BookNotFoundException {
         return bookService.findById(id);
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteById(@PathVariable Long id) throws BookNotFoundException {
+        bookService.delete(id);
+    }
 }
