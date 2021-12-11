@@ -6,6 +6,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
+// The Mapper will convert from entity to DTO
 @Mapper
 public interface BookMapper {
     BookMapper INSTANCE = Mappers.getMapper(BookMapper.class);

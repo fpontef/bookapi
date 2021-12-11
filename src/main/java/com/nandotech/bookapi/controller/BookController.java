@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/book")
@@ -25,5 +26,10 @@ public class BookController {
     @ResponseStatus(HttpStatus.CREATED) // exibe 201 ao invés de 200
     public MessageResponseDTO createBook(@RequestBody @Valid BookDTO bookDTO) {
         return bookService.createBook(bookDTO);
+    }
+
+    @GetMapping
+    public List<BookDTO> listAll() {
+        return bookService.listAll();
     }
 }

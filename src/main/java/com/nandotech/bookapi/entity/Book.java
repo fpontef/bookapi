@@ -16,32 +16,34 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "books")
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(nullable = false)
+    @Column(name = "author", nullable = false)
     private String author;
 
-    @Column(nullable = false)
+    @Column(name = "edition", nullable = false)
     private String edition;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(name = "genre",nullable = false)
     private BookGenre genre;
 
+    @Column(name = "notes")
     private String notes;
 
     // Set to avoid repeat
 //    @OneToMany( fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE})
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    @JoinTable( name = "book_tag",
-//            joinColumns = { @JoinColumn (name = "book_id" )},
-//            inverseJoinColumns= { @JoinColumn (name = "tag_id" )}
-//    )
+    @JoinTable( name = "books_tags",
+            joinColumns = { @JoinColumn (name = "book_id" )},
+            inverseJoinColumns= { @JoinColumn (name = "tag_id" )}
+    )
     private Set<Tag> tags = new HashSet<>();
 }

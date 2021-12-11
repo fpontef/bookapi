@@ -16,15 +16,16 @@ import java.util.Set;
 @Builder // construção de objetos
 @AllArgsConstructor // construtor com todos os itens
 @NoArgsConstructor // construtor sem itens
+@Table(name = "tags")
 public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @Column(name = "name")
+    @Column(name = "name")
     private String name;
 
     // mappedBy will tell who "owns" the relationship
-    @ManyToMany( fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "tags")
-    private Set<Book> books = new HashSet<>();
+//    @ManyToMany( mappedBy = "books", cascade = CascadeType.PERSIST)
+//    private Set<Book> books = new HashSet<>();
 }
