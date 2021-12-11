@@ -3,6 +3,7 @@ package com.nandotech.bookapi.controller;
 import com.nandotech.bookapi.dto.request.BookDTO;
 import com.nandotech.bookapi.dto.response.MessageResponseDTO;
 import com.nandotech.bookapi.service.BookService;
+import com.nandotech.bookapi.service.exception.BookNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -31,5 +32,10 @@ public class BookController {
     @GetMapping
     public List<BookDTO> listAll() {
         return bookService.listAll();
+    }
+
+    @GetMapping("/{id}")
+    public BookDTO findById(@PathVariable Long id) throws BookNotFoundException {
+        return bookService.findById(id);
     }
 }

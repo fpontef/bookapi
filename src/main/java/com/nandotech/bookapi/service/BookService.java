@@ -5,11 +5,13 @@ import com.nandotech.bookapi.dto.response.MessageResponseDTO;
 import com.nandotech.bookapi.entity.Book;
 import com.nandotech.bookapi.mapper.BookMapper;
 import com.nandotech.bookapi.repository.BookRepository;
+import com.nandotech.bookapi.service.exception.BookNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 // Service is used to write the business logic in a different layer.
@@ -55,5 +57,14 @@ public class BookService {
         return allBooks.stream()
                 .map(bookMapper::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    // Quando temos uma Exception ou faremos um try/catch ou lança um thorws na assinatura do método conforma baixo
+    public BookDTO findById(Long id) throws BookNotFoundException {
+        Book bookById = bookRepository
+                .findById(id)
+                .orElseThrow(() -> new BookNotFoundException(id));
+
+        return bookMapper.toDTO(bookById);
     }
 }
