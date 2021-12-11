@@ -1,4 +1,4 @@
-package com.nandotech.bookapi.dto;
+package com.nandotech.bookapi.dto.response;
 
 import lombok.Builder;
 import lombok.Data;

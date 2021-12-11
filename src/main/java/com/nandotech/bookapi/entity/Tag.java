@@ -26,5 +26,5 @@ public class Tag {
 
     // mappedBy will tell who "owns" the relationship
     @ManyToMany( fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "tags")
-    Set<Book> books = new HashSet<>();
+    private Set<Book> books = new HashSet<>();
 }
