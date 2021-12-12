@@ -20,13 +20,12 @@ id
 title
 author
 edition
-genre
-notes
 tags
 
 [tag]
 id
 name
+books
 ```
 
 # Dependencies
@@ -39,13 +38,11 @@ name
 * H2 - DB de memória que pode ser persistido para arquivo tipo sqlite
 
 # Alterações do original:
-- Ao invés de usar Pesoas e telefones, usei Livros e Tags com ManyToMany
+- Ao invés de usar Pesoas e telefones, usei Livros e Tags
 - Adaptei a configuração do H2 em memória para valor fixo no application.properties
 
 # Post example
 Using POST@URL/api/v1/book
-Using Set instead of List will avoid repeated Tags on post.
-
 ```json
 {
   "title": "Javascript Programming Beginner To Professional Basic Advance Learn Javascript In N Days",
@@ -60,3 +57,5 @@ Using Set instead of List will avoid repeated Tags on post.
   ]
 }
 ```
+
+The Tag entity have Set to avoid repeated insertions.

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -28,10 +29,10 @@ public class Book {
     private String author;
 
     @Column(name = "edition", nullable = false)
-    private int edition;
+    private String edition;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "genre", nullable = false)
+    @Column(name = "genre",nullable = false)
     private BookGenre genre;
 
     @Column(name = "notes")
@@ -40,9 +41,9 @@ public class Book {
     // Set to avoid repeat
 //    @OneToMany( fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE})
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "books_tags",
-            joinColumns = {@JoinColumn(name = "book_id")},
-            inverseJoinColumns = {@JoinColumn(name = "tag_id")}
+    @JoinTable( name = "books_tags",
+            joinColumns = { @JoinColumn (name = "book_id" )},
+            inverseJoinColumns= { @JoinColumn (name = "tag_id" )}
     )
     private Set<Tag> tags = new HashSet<>();
 }

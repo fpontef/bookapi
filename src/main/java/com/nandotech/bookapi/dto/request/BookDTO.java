@@ -33,7 +33,8 @@ public class BookDTO {
     private String author;
 
     @NotEmpty
-    private int edition;
+    @Size(min = 1, max = 3)
+    private String edition;
 
     @Enumerated(EnumType.STRING)
     private BookGenre genre;
@@ -43,6 +44,6 @@ public class BookDTO {
 
     @Valid
     @NotEmpty
-    private Set<TagDTO> tags = new HashSet<>();
+    private Set<Tag> tags = new HashSet<>();
 
 }
