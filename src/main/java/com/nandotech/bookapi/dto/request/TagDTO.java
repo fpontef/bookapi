@@ -23,5 +23,5 @@ public class TagDTO {
     @Size(min = 2, max = 80)
     private String name;
 
-    private Set<Book> books = new HashSet<>();
+//    private Set<BookDTO> books = new HashSet<>();
 }

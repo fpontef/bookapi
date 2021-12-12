@@ -33,7 +33,7 @@ public class BookDTO {
     private String author;
 
     @NotEmpty
-    private int edition;
+    private String edition;
 
     @Enumerated(EnumType.STRING)
     private BookGenre genre;

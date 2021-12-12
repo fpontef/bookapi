@@ -28,7 +28,7 @@ public class Book {
     private String author;
 
     @Column(name = "edition", nullable = false)
-    private int edition;
+    private String edition;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "genre", nullable = false)

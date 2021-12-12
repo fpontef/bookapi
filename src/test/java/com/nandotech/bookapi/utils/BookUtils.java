@@ -13,7 +13,7 @@ public class BookUtils {
     private static final long BOOK_ID = 1L;
     private static final String TITLE = "Learn JS in 24 hours";
     private static final String AUTHOR = "João das Neves";
-    private static final int EDITION = 1;
+    private static final String EDITION = "1";
     private static final BookGenre GENRE = BookGenre.valueOf("TECH");
 
     public static BookDTO createFakeDTO() {
