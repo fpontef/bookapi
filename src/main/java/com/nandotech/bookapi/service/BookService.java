@@ -44,10 +44,7 @@ public class BookService {
         Book bookToSave = bookMapper.toModel(bookDTO);
 
         Book savedBook = bookRepository.save(bookToSave);
-        return MessageResponseDTO
-                .builder()
-                .message("Book successfull created with ID: " + savedBook.getId() + " Data: " + savedBook)
-                .build();
+        return createMessageResponse(savedBook.getId(), "Created Book with id: ");
     }
 
     public List<BookDTO> listAll() {
@@ -68,13 +65,28 @@ public class BookService {
 
     public void delete(Long id) throws BookNotFoundException {
         verifyIfExists(id);
-
         bookRepository.deleteById(id);
+    }
+
+    public MessageResponseDTO updateById(Long id, BookDTO bookDTO) throws BookNotFoundException {
+        verifyIfExists(id);
+
+        Book bookToUpdate = bookMapper.toModel(bookDTO);
+
+        Book savedBook = bookRepository.save(bookToUpdate);
+        return createMessageResponse(savedBook.getId(), "Updated book with id: ");
     }
 
     private Book verifyIfExists(Long id) throws BookNotFoundException{
         return bookRepository
                 .findById(id)
                 .orElseThrow(() -> new BookNotFoundException(id));
+    }
+
+    private MessageResponseDTO createMessageResponse(Long id, String msg) {
+        return MessageResponseDTO
+                .builder()
+                .message(msg + id)
+                .build();
     }
 }
