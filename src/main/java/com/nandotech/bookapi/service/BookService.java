@@ -50,7 +50,6 @@ public class BookService {
     public List<BookDTO> listAll() {
         List<Book> allBooks = bookRepository.findAll();
 
-        System.out.println("ALLBOOKS >>>>>" + allBooks);
         return allBooks.stream()
                 .map(bookMapper::toDTO)
                 .collect(Collectors.toList());

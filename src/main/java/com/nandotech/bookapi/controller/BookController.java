@@ -33,7 +33,7 @@ public class BookController {
         return bookService.createBook(bookDTO);
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<BookDTO> listAll() {
         return bookService.listAll();
     }
